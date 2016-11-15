@@ -1,0 +1,115 @@
+//Orphans.java
+/*This is the Orphans class for the Orphanage System.*/
+
+public class Orphans{
+	
+	private String lastName;
+	private String forename;
+	private String dob;
+	private String hairColour;
+	private String eyeColour;
+	private char gender;
+	private int roomNo;
+	private int bedNo;
+	private String arrivalDate;
+	private String departureDate;	
+	
+	public Orphans(){
+		lastName = "No Last Name Specified";
+		forename = "No Forename Specified";
+		dob = "dd/mm/YYYY";
+		hairColour = "No Hair Colour Specified";
+		eyeColour = "No Eye Colour Specified";
+		gender = 0;
+		roomNo = 0;
+		bedNo = 0;
+		arrivalDate = "dd/mm/YYYY";
+		departureDate = "dd/mm/YYYY";	
+	}
+	
+	public Orphans(String lastName, String forename, String dob, String hairColour, String eyeColour, char gender, String arrivalDate, String departureDate, int roomNo, int bedNo){
+		this.lastName = lastName;
+		this.forename = forename;
+		this.dob = dob;
+		this.hairColour = hairColour;
+		this.eyeColour = eyeColour;
+		this.gender = gender;
+		this.roomNo = roomNo;
+		this.bedNo = bedNo;
+		this.arrivalDate = arrivalDate;
+		this.departureDate = departureDate;		
+	}
+	
+	public void setLastName(String lastName){
+		this.lastName = lastName;
+	}
+	public void setForename(String forename){
+		this.forename = forename;
+	}
+	public void setDob(String dob){
+		this.dob = dob;
+	}
+	public void setHairColour(String hairColour){
+		this.hairColour = hairColour;
+	}
+	public void setEyeColour(String eyeColour){
+		this.eyeColour = eyeColour;
+	}
+	public void setGender(char gender){
+		this.gender = gender;
+	}
+	public void setRoomNo(int roomNo){
+		this.roomNo = roomNo;
+	}
+	public void setBedNo(int bedNo){
+		this.bedNo = bedNo;
+	}
+	public void setArrivalDate(String arrivalDate){
+		this.arrivalDate = arrivalDate;
+	}
+	public void setDepartureDate(String departureDate){
+		this.departureDate = departureDate;
+	}	
+	
+	public String getLastName(){
+		return lastName;
+	}
+	public String getForename(){
+		return forename;
+	}
+	public String getDob(){
+		return dob;
+	}
+	public String getHairColour(){
+		return hairColour;
+	}
+	public String getEyeColour(){
+		return eyeColour;
+	}
+	public char getGender(){
+		return gender;
+	}
+	public int getRoomNo(){
+		return roomNo;
+	}
+	public int getBedNo(){
+		return bedNo;
+	}
+	public String getArrivalDate(){
+		return arrivalDate;
+	}
+	public String getDepartureDate(){
+		return departureDate;
+	}
+		
+	public String toString(){
+		return "Name: " + lastName + " " + forename + "."
+				+ "\nDate of Birth: " + dob + "."
+					+ "\nHair Colour: " + hairColour + "."
+						+ "\nEye Colour: " + eyeColour + "."
+							+ "Room Number: " + roomNo + "."
+								+ "Bed Number: " + bedNo + "."
+									+ "\nArrival Date: " + arrivalDate + "."
+										+ "\nDepartureDate: " + departureDate + ".";
+	}
+}
