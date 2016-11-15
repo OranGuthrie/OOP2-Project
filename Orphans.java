@@ -3,8 +3,7 @@
 
 public class Orphans{
 	
-	private String lastName;
-	private String forename;
+	private String name;
 	private String dob;
 	private String hairColour;
 	private String eyeColour;
@@ -15,8 +14,7 @@ public class Orphans{
 	private String departureDate;	
 	
 	public Orphans(){
-		lastName = "No Last Name Specified";
-		forename = "No Forename Specified";
+		name = "No Name Specified";
 		dob = "dd/mm/YYYY";
 		hairColour = "No Hair Colour Specified";
 		eyeColour = "No Eye Colour Specified";
@@ -27,24 +25,16 @@ public class Orphans{
 		departureDate = "dd/mm/YYYY";	
 	}
 	
-	public Orphans(String lastName, String forename, String dob, String hairColour, String eyeColour, char gender, String arrivalDate, String departureDate, int roomNo, int bedNo){
-		this.lastName = lastName;
-		this.forename = forename;
+	public Orphans(String name, String dob, String hairColour, String eyeColour, char gender){
+		this.name = name;
 		this.dob = dob;
 		this.hairColour = hairColour;
 		this.eyeColour = eyeColour;
-		this.gender = gender;
-		this.roomNo = roomNo;
-		this.bedNo = bedNo;
-		this.arrivalDate = arrivalDate;
-		this.departureDate = departureDate;		
+		this.gender = gender;		
 	}
 	
-	public void setLastName(String lastName){
-		this.lastName = lastName;
-	}
-	public void setForename(String forename){
-		this.forename = forename;
+	public void setName(String name){
+		this.name = name;
 	}
 	public void setDob(String dob){
 		this.dob = dob;
@@ -71,11 +61,8 @@ public class Orphans{
 		this.departureDate = departureDate;
 	}	
 	
-	public String getLastName(){
-		return lastName;
-	}
-	public String getForename(){
-		return forename;
+	public String getName(){
+		return name;
 	}
 	public String getDob(){
 		return dob;
@@ -103,7 +90,7 @@ public class Orphans{
 	}
 		
 	public String toString(){
-		return "Name: " + lastName + " " + forename + "."
+		return "Name: " + name + "."
 				+ "\nDate of Birth: " + dob + "."
 					+ "\nHair Colour: " + hairColour + "."
 						+ "\nEye Colour: " + eyeColour + "."
