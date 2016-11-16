@@ -4,8 +4,8 @@
 public class Adoptions{
 	
 	private String childName;
-	private String adopter1Name;
-	private String adopter2Name;
+	private String guardian1Name;
+	private String guardian2Name;
 	private String address;
 	private String dob1;
 	private String dob2;
@@ -13,32 +13,30 @@ public class Adoptions{
 	
 	public Adoptions(){
 		childName = "No Name Specified";
-		adopter1Name = "No Name Specified";
-		adopter2Name = "No Name Specified";
+		guardian1Name = "No Name Specified";
+		guardian2Name = "No Name Specified";
 		address = "No Address Specified";
 		dob1 = "dd/mm/YYYY";
 		dob2 = "dd/mm/YYYY";
-		adoptionDate = "dd/mm/YYYY";
 	}
 	
-	public Adoptions(String childName, String adopter1Name, String adopter2Name, String address, String dob1, String dob2, String adoptionDate){
+	public Adoptions(String childName, String guardian1Name, String guardian2Name, String address, String dob1, String dob2){
 		this.childName = childName;
-		this.adopter1Name = adopter1Name;
-		this.adopter2Name = adopter2Name;
+		this.guardian1Name = guardian1Name;
+		this.guardian2Name = guardian2Name;
 		this.address = address;
 		this.dob1 = dob1;
 		this.dob2 = dob2;
-		this.adoptionDate = adoptionDate;
 	}
 	
 	public void setChildName(String childName){
 		this.childName = childName;
 	}
-	public void setAdopter1Name(String adopter1Name){
-		this.adopter1Name = adopter1Name;
+	public void setGuardian1Name(String guardian1Name){
+		this.guardian1Name = guardian1Name;
 	}
-	public void setAdopter2Name(String adopter2Name){
-		this.adopter2Name = adopter2Name;
+	public void setGuardian2Name(String guardian2Name){
+		this.guardian2Name = guardian2Name;
 	}
 	public void setAddress(String address){
 		this.address = address;
@@ -49,18 +47,15 @@ public class Adoptions{
 	public void setDob2(String dob2){
 		this.dob2 = dob2;
 	}
-	public void setAdoptionDate(String adoptionDate){
-		this.adoptionDate = adoptionDate;
-	}
 	
 	public String getChildName(){
 		return childName;
 	}
-	public String getAdopter1Name(){
-		return adopter1Name;
+	public String getGuardian1Name(){
+		return guardian1Name;
 	}
-	public String getAdopter2Name(){
-		return adopter2Name;
+	public String getGuardian2Name(){
+		return guardian2Name;
 	}
 	public String getAddress(){
 		return address;
@@ -71,15 +66,11 @@ public class Adoptions{
 	public String getDob2(){
 		return dob2;
 	}
-	public String adoptionDate(){
-		return adoptionDate;
-	}
 	
 	public String toString(){
 		return "Child Name: " + childName + "."
-				+ "Adopter Names: " + adopter1Name + ", " + adopter2Name + "."
+				+ "Guardian Names: " + guardian1Name + ", " + guardian2Name + "."
 					+ "Address: " + address + "."
-						+ "Date of Births: Adopter 1 " + dob1 + ", Adopter 2 " + dob2 + "."
-							+ "AdoptionDate: " + adoptionDate + ".";
+						+ "Date of Births: Adopter 1 " + dob1 + ", Adopter 2 " + dob2 + ".";
 	}
 }

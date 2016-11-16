@@ -4,15 +4,15 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Random;
 import java.io.*;
 import java.text.*;
 import java.util.*;
 
 public class OrphanageGUI extends JFrame implements ActionListener{
 	
-	JMenu fileMenu, orphanMenu;
+	JMenu fileMenu, orphanMenu, adoptionMenu;
 	Orphans[] orphans; //This gets saved to the file.
+	Adoptions[] adoptions;
 	int count;
 	
 	public static void main(String args[]){
@@ -32,18 +32,34 @@ public class OrphanageGUI extends JFrame implements ActionListener{
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		//createFileMenu();
-		//createOrphanMenu();
+		createFileMenu();
+		createOrphanMenu();
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		menuBar.add(fileMenu);
 		menuBar.add(orphanMenu);
+		menuBar.add(adoptionMenu);
 	}
 	
 	public void newSystem(){
 		orphans = new Orphans[25];
 		count = 0;
+	}
+	
+	public void addAdoption(){
+		String childName = JOptionPane.showInputDialog("Enter child's name: ");
+		String guardian1Name = JOptionPane.showInputDialog("Enter the first guardian's name: ");
+		String guardian2Name = JOptionPane.showInputDialog("Enter the second guardian's name: ");
+		String address = JOptionPane.showInputDialog("Enter the adopter's address: ");
+		String dob1 = JOptionPane.showInputDialog("Enter the Date of Birth for the first guardian: ");
+		String dob2 = JOptionPane.showInputDialog("Enter the Date of Birth for the second guardian: ");
+		
+		Adoptions adoption = new Adoptions(childName, guardian1Name, guardian2Name, address, dob1, dob2);
+		
+		//SimpleDateFormat convictionDate = new SimpleDateFormat("MMMM dd'th', yyyy");
+        //GregorianCalendar convictionDate;
+      	//convictionDate = new GregorianCalendar();
 	}
 	
 	public void addOrphan(){
@@ -74,7 +90,7 @@ public class OrphanageGUI extends JFrame implements ActionListener{
 									+ "\nDate of Birth: " + orphans[i].getDob() + "."
 										+ "\nHair Colour: " + orphans[i].getHairColour() + "."
 											+ "\nEye Colour: " + orphans[i].getEyeColour() + "."
-												+ "\nGender: " + orphans[i].getGender() + ".");
+												+ "\nGender: " + orphans[i].getGender() + ".\n");
 				
 				}
 			}	
@@ -146,6 +162,10 @@ public class OrphanageGUI extends JFrame implements ActionListener{
         	displayList();
       	}
       	
+      	else if(e.getActionCommand() .equals ("New Adoption")){
+      	    addAdoption();
+      	}
+      	
       	else
       	 	showMessage("Unknown Input");
         }
@@ -174,7 +194,7 @@ public class OrphanageGUI extends JFrame implements ActionListener{
     }
 
     private void createOrphanMenu(){   
-      	orphanMenu = new JMenu("Orphan");
+      	orphanMenu = new JMenu("Orphans");
     
       	JMenuItem item;
 
@@ -187,11 +207,25 @@ public class OrphanageGUI extends JFrame implements ActionListener{
       	orphanMenu.add(item);
     }
     
-    public void showMessage (String s){
+    private void createAdoptionMenu(){   
+      	adoptionMenu = new JMenu("Adoptions");
+    
+      	JMenuItem item;
+
+      	item = new JMenuItem("New Adoption");
+      	item.addActionListener(this);
+      	adoptionMenu.add(item);
+
+      	item = new JMenuItem("Display Adoptions");
+      	item.addActionListener(this);
+      	adoptionMenu.add(item);
+    }
+    
+    public void showMessage(String s){
       	JOptionPane.showMessageDialog(null,s);
     }
 
-    public void showMessage (JTextArea s){
+    public void showMessage(JTextArea s){
         JOptionPane.showMessageDialog(null,s);
     }
 }
