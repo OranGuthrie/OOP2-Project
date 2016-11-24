@@ -29,7 +29,7 @@ public class OrphanageGUI extends JFrame implements ActionListener{
 		setLocation(100, 100);
 		Container pane = getContentPane();		
 		pane.setBackground(new Color(240, 210, 240));
-		
+		pane.setLayout(new FlowLayout());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		createFileMenu();
@@ -43,8 +43,45 @@ public class OrphanageGUI extends JFrame implements ActionListener{
 		menuBar.add(adoptionMenu);
 		
 		panel = new JPanel();
-		panel.setLayout(new GridBagLayout());
-		panel.setBackground(new Color(240, 210, 240));
+		panel.setLayout(new GridLayout(6, 2));
+		panel.setBackground(new Color(100, 150, 125));
+		panel.setSize(25,40);
+		
+		JLabel ltitle = new JLabel("Orphanage");
+		pane.add(ltitle);
+		
+		JLabel lname = new JLabel(" Enter child's name: ");
+		JLabel ldob = new JLabel(" Enter child's date of birth: ");
+		JLabel lhairColour = new JLabel(" Enter child's hair colour: ");
+		JLabel leyeColour = new JLabel(" Enter child's eye colour: ");
+		JLabel lgender = new JLabel(" Enter child's gender: ");
+		
+		JTextField fname = new JTextField(25);
+		JTextField fdob = new JTextField(25);
+		JTextField fhairColour = new JTextField(25);
+		JTextField feyeColour = new JTextField(25);
+		JTextField fgender = new JTextField(25);
+		
+		panel.add(lname);
+		panel.add(fname);
+		panel.add(ldob);
+		panel.add(fdob);
+		panel.add(lhairColour);
+		panel.add(fhairColour);
+		panel.add(leyeColour);
+		panel.add(feyeColour);
+		panel.add(lgender);
+		panel.add(fgender);
+		
+		JButton jb = new JButton("Confirm");
+		panel.add(jb);
+		jb.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent Event){
+            	JOptionPane.showMessageDialog(null, "Confirming...");
+         	}
+      	});
+		
+		pane.add(panel);
 	}
 	
 	public void newSystem(){
@@ -74,14 +111,10 @@ public class OrphanageGUI extends JFrame implements ActionListener{
 	}
 	
 	public void addOrphan(){
-		JLabel name = new JLabel("Enter Child Name: ");
-		JLabel dob = new JLabel("Enter child's date of birth: ");
-		JLabel hairColour = new JLabel("Enter child's hair colour: ");
-		JLabel eyeColour = new JLabel("Enter child's eye colour: ");
-		JLabel gender = new JLabel("Enter child's gender: ").charAt(0);
+	
 		
-		Orphans orphan = new Orphans(name, dob, hairColour, eyeColour, gender);
-		
+	//	Orphans orphan = new Orphans(name, dob, hairColour, eyeColour, gender);
+		Orphans orphan = new Orphans();
 		orphans[count] = orphan;
 		count++;
 		bedCount++;
@@ -99,13 +132,14 @@ public class OrphanageGUI extends JFrame implements ActionListener{
         //GregorianCalendar arrivalDate;
       	//arrivalDate = new GregorianCalendar();
       	
-      	JOptionPane.showMessageDialog(null, "Name: " + name + "."
+      /*	JOptionPane.showMessageDialog(null, "Name: " + name + "."
       											+ "\nDate of Birth: " + dob + "."
       												+ "\nHair Colour: " + hairColour + "."
       													+ "\nEye Colour: " + eyeColour + "."
       														+ "\nGender: " + gender + "."
       															+ "\nRoom Number: " + roomCount + "."
-      																+ "\nBed Number: " + bedCount + ".");
+      																+ "\nBed Number: " + bedCount + ".");*/
+      		JOptionPane.showMessageDialog(null, orphans.toString());
 	}
 	
 	public void displayList(){
