@@ -1,6 +1,10 @@
 //OrphanageGUI.java
 /*This program creates a GUI for the Orphanage System.*/
 
+//SimpleDateFormat adoptionDate = new SimpleDateFormat("MMMM dd'th', yyyy");
+//GregorianCalendar adoptionDate;
+//adoptionDate = new GregorianCalendar();
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -15,6 +19,7 @@ public class OrphanageGUI extends JFrame implements ActionListener{
 	Orphans[] orphans;
 	Adoptions[] adoptions;
 	int count, roomCount, bedCount;
+	Container pane;
 	
 	public static void main(String args[]){
 		OrphanageGUI frame = new OrphanageGUI();
@@ -27,7 +32,7 @@ public class OrphanageGUI extends JFrame implements ActionListener{
 		setTitle("Orphanage System");
 		setSize(900, 600);
 		setLocation(100, 100);
-		Container pane = getContentPane();		
+		pane = getContentPane();		
 		pane.setBackground(new Color(240, 210, 240));
 		pane.setLayout(new FlowLayout());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -41,6 +46,36 @@ public class OrphanageGUI extends JFrame implements ActionListener{
 		menuBar.add(fileMenu);
 		menuBar.add(orphanMenu);
 		menuBar.add(adoptionMenu);
+	}
+	
+	public void newSystem(){
+		orphans = new Orphans[24];
+		adoptions = new Adoptions[24];
+		count = 0;
+		roomCount = 1;
+		bedCount = 0;
+	}
+	
+	public void addAdoption(){
+		
+		createAdoptionPanel();
+		
+		Adoptions adoption = new Adoptions();
+		adoptions[count] = adoption;
+		count++;		
+	}
+	
+	public void createAdoptionPanel(){
+		
+		JFrame adoptionsGUI = new JFrame("Adoptions");
+		adoptionsGUI.setSize(600, 500);
+		adoptionsGUI.setLocation(200, 200);
+		
+		Container cpane = adoptionsGUI.getContentPane();
+		
+		cpane.setBackground(new Color(100, 210, 240));
+		cpane.setLayout(new FlowLayout());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(6, 2));
@@ -48,7 +83,88 @@ public class OrphanageGUI extends JFrame implements ActionListener{
 		panel.setSize(25,40);
 		
 		JLabel ltitle = new JLabel("Orphanage");
-		pane.add(ltitle);
+		cpane.add(ltitle);
+		
+		JLabel lcName = new JLabel(" Enter child's name: ");
+		JLabel lguardian1Name = new JLabel(" Enter first guardian's name: ");
+		JLabel lguardian2Name = new JLabel(" Enter second guardian's name: ");
+		JLabel laddress = new JLabel(" Enter address: ");
+		JLabel ldob1 = new JLabel(" Enter first guardian's date of birth: ");
+		JLabel ldob2 = new JLabel(" Enter first guardian's date of birth: ");
+		
+		JTextField fcName = new JTextField(25);
+		JTextField fguardian1Name = new JTextField(25);
+		JTextField fguardian2Name = new JTextField(25);
+		JTextField faddress = new JTextField(25);
+		JTextField fdob1 = new JTextField(10);
+		JTextField fdob2 = new JTextField(10);
+		
+		panel.add(lcName);
+		panel.add(fcName);
+		panel.add(lguardian1Name);
+		panel.add(fguardian1Name);
+		panel.add(lguardian2Name);
+		panel.add(fguardian2Name);
+		panel.add(laddress);
+		panel.add(faddress);
+		panel.add(ldob1);
+		panel.add(fdob1);
+		panel.add(ldob2);
+		panel.add(fdob2);
+		
+		JButton jb = new JButton("Confirm");
+		panel.add(jb);
+		jb.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent Event){
+            	adoptionsGUI.setVisible(false);
+            	//Add data to array
+         	}
+      	});
+		
+		cpane.add(panel);
+		adoptionsGUI.setVisible(true);
+	}
+	
+	public void addOrphan(){
+		
+		createOrphanPanel();
+		
+		Orphans orphan = new Orphans();
+		orphans[count] = orphan;
+		count++;
+		bedCount++;
+		
+		if(bedCount == 5){
+			roomCount++;
+			bedCount = 1;
+		}
+		
+		if(roomCount == 6 & bedCount >= 1){
+			JOptionPane.showMessageDialog(null, "No Vacancies Available.");
+		}
+      	
+      	JOptionPane.showMessageDialog(null, orphans.toString());
+	}
+	
+	public void createOrphanPanel(){
+
+		JFrame orphansGUI = new JFrame("Orphans");
+		orphansGUI.setSize(600, 500);
+		orphansGUI.setLocation(200, 200);
+		
+		Container cpane = orphansGUI.getContentPane();
+		
+		cpane.setBackground(new Color(100, 210, 240));
+		cpane.setLayout(new FlowLayout());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		panel = new JPanel();
+		panel.setLayout(new GridLayout(6, 2));
+		panel.setBackground(new Color(100, 150, 125));
+		panel.setSize(25,40);
+		
+		JLabel ltitle = new JLabel("Orphanage");
+		cpane.add(ltitle);
 		
 		JLabel lname = new JLabel(" Enter child's name: ");
 		JLabel ldob = new JLabel(" Enter child's date of birth: ");
@@ -57,10 +173,10 @@ public class OrphanageGUI extends JFrame implements ActionListener{
 		JLabel lgender = new JLabel(" Enter child's gender: ");
 		
 		JTextField fname = new JTextField(25);
-		JTextField fdob = new JTextField(25);
+		JTextField fdob = new JTextField(10);
 		JTextField fhairColour = new JTextField(25);
 		JTextField feyeColour = new JTextField(25);
-		JTextField fgender = new JTextField(25);
+		JTextField fgender = new JTextField(6);
 		
 		panel.add(lname);
 		panel.add(fname);
@@ -77,69 +193,13 @@ public class OrphanageGUI extends JFrame implements ActionListener{
 		panel.add(jb);
 		jb.addActionListener(new ActionListener(){
         	public void actionPerformed(ActionEvent Event){
-            	JOptionPane.showMessageDialog(null, "Confirming...");
+            	orphansGUI.setVisible(false);
+            	//Add data to array
          	}
       	});
 		
-		pane.add(panel);
-	}
-	
-	public void newSystem(){
-		orphans = new Orphans[24];
-		adoptions = new Adoptions[24];
-		count = 0;
-		roomCount = 1;
-		bedCount = 0;
-	}
-	
-	public void addAdoption(){
-		String childName = JOptionPane.showInputDialog("Enter child's name: ");
-		String guardian1Name = JOptionPane.showInputDialog("Enter the first guardian's name: ");
-		String guardian2Name = JOptionPane.showInputDialog("Enter the second guardian's name: ");
-		String address = JOptionPane.showInputDialog("Enter the adopter's address: ");
-		String dob1 = JOptionPane.showInputDialog("Enter the Date of Birth for the first guardian: ");
-		String dob2 = JOptionPane.showInputDialog("Enter the Date of Birth for the second guardian: ");
-		
-		Adoptions adoption = new Adoptions(childName, guardian1Name, guardian2Name, address, dob1, dob2);
-		
-		adoptions[count] = adoption;
-		count++;		
-		
-		//SimpleDateFormat convictionDate = new SimpleDateFormat("MMMM dd'th', yyyy");
-        //GregorianCalendar convictionDate;
-      	//convictionDate = new GregorianCalendar();
-	}
-	
-	public void addOrphan(){
-	
-		
-	//	Orphans orphan = new Orphans(name, dob, hairColour, eyeColour, gender);
-		Orphans orphan = new Orphans();
-		orphans[count] = orphan;
-		count++;
-		bedCount++;
-		
-		if(bedCount == 5){
-			roomCount++;
-			bedCount = 1;
-		}
-		
-		if(roomCount == 6 & bedCount >= 1){
-			JOptionPane.showMessageDialog(null, "No Vacancies Available.");
-		}
-		
-		//SimpleDateFormat arrivalDate = new SimpleDateFormat("MMMM dd'th', yyyy");	
-        //GregorianCalendar arrivalDate;
-      	//arrivalDate = new GregorianCalendar();
-      	
-      /*	JOptionPane.showMessageDialog(null, "Name: " + name + "."
-      											+ "\nDate of Birth: " + dob + "."
-      												+ "\nHair Colour: " + hairColour + "."
-      													+ "\nEye Colour: " + eyeColour + "."
-      														+ "\nGender: " + gender + "."
-      															+ "\nRoom Number: " + roomCount + "."
-      																+ "\nBed Number: " + bedCount + ".");*/
-      		JOptionPane.showMessageDialog(null, orphans.toString());
+		cpane.add(panel);
+		orphansGUI.setVisible(true);
 	}
 	
 	public void displayList(){
@@ -154,9 +214,8 @@ public class OrphanageGUI extends JFrame implements ActionListener{
 										+ "\nHair Colour: " + orphans[i].getHairColour() + "."
 											+ "\nEye Colour: " + orphans[i].getEyeColour() + "."
 												+ "\nGender: " + orphans[i].getGender() + "."
-													+ "\nRoom Number: " + orphans[i].getRoomNo() + "."//Displays 0
-														+ "\nBed Number: " + orphans[i].getBedNo() + ".\n");//Displays 0
-				
+													+ "\nRoom Number: " + roomCount + "."//Displays 0
+														+ "\nBed Number: " + bedCount + ".\n");//Displays 0
 				}
 			}	
 			showMessage(area);
@@ -178,7 +237,6 @@ public class OrphanageGUI extends JFrame implements ActionListener{
 										+ "\nAddress: " + adoptions[i].getAddress() + "."
 											+ "\nFirst Guardian's Date Of Birth: " + adoptions[i].getDob1() + "."
 												+ "\nSecond Guardian's Date Of Birth: " + adoptions[i].getDob2() + ".\n");
-				
 				}
 			}	
 			showMessage(area);
@@ -215,24 +273,24 @@ public class OrphanageGUI extends JFrame implements ActionListener{
    }
       
    public void actionPerformed (ActionEvent e){
-      	if(e.getActionCommand() .equals ("Quit")){
+      	if(e.getActionCommand().equals("Quit")){
       		showMessage("Quitting");
       		System.exit(0);
       	}
       	
-      	else if(e.getActionCommand() .equals ("Add Orphan")){
+      	else if(e.getActionCommand().equals("Add Orphan")){
       	    addOrphan();
       	}
       	
-      	else if(e.getActionCommand() .equals ("Display Orphans")){
+      	else if(e.getActionCommand().equals("Display Orphans")){
             displayList();
       	}
       	
-      	else if(e.getActionCommand() .equals ("New Orphan File")){
+      	else if(e.getActionCommand().equals("New Orphan File")){
       		newSystem();
         }
       	
-      	else if(e.getActionCommand() .equals ("Save File")){
+      	else if(e.getActionCommand().equals("Save File")){
       		try{
       	 		save();
       	 		showMessage("Data Saved Successfully");
@@ -244,16 +302,16 @@ public class OrphanageGUI extends JFrame implements ActionListener{
       		}
       	}
     	
-    	else if(e.getActionCommand() .equals ("Open Orphan File")){
+    	else if(e.getActionCommand().equals("Open Orphan File")){
       		open();
         	displayList();
       	}
       	
-      	else if(e.getActionCommand() .equals ("New Adoption")){
+      	else if(e.getActionCommand().equals("New Adoption")){
       	    addAdoption();
       	}
       	
-      	else if(e.getActionCommand() .equals ("Display Adoptions")){
+      	else if(e.getActionCommand().equals("Display Adoptions")){
             displayAdoptions();
       	}
       	

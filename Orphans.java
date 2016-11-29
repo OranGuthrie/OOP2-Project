@@ -18,7 +18,7 @@ public class Orphans{
 		dob = "dd/mm/YYYY";
 		hairColour = "No Hair Colour Specified";
 		eyeColour = "No Eye Colour Specified";
-		gender = 0;
+		gender = 0; //('')
 		roomNo = 0;
 		bedNo = 0;
 		arrivalDate = "dd/mm/YYYY";
