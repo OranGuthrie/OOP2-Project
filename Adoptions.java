@@ -53,6 +53,7 @@ public class Adoptions{
  *It is used to control changes to the variable.
  *<p>
  *The following methods are mutator methods for their respective variables.
+ *
  *@author Oran Guthrie
  *@version 3
  *@since 16-Nov-2016
@@ -80,6 +81,7 @@ public class Adoptions{
  *It returns the value of the private member variable. 
  *<p>
  *The following methods are accessor methods for their respective variables.
+ *
  *@author Oran Guthrie
  *@version 3
  *@since 16-Nov-2016
